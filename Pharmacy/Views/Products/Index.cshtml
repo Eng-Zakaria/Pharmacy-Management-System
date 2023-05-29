@@ -1,0 +1,223 @@
+﻿@model IEnumerable<Pharmacy.Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-controller="Products" asp-action="Create" class="btn btn-success">Create New  <i class="bi bi-plus-square-fill"></i></a>
+</p>
+<div class="row">
+
+    <br />
+
+    <form method="get" asp-controller="Products"
+          asp-action="Index" class="mb-3 col-3">
+        <label>Page Size</label>
+        <input type="number" name="PageSize" value="@ViewBag.PageSize" />
+
+        <label>Page Number</label>
+        <input type="number" name="PageNumber" value="@ViewBag.PageNumber" />
+
+        <div class="input-group">
+            <input type="text" name="search"
+                   class="form-control"
+                   value="@ViewBag.CurrentSearch" />
+            <button type="submit"
+                    class="btn btn-secondary input-group-addon">
+                <i class="bi bi-search"></i>
+            </button>
+        </div>
+    </form>
+</div>
+
+@if (Model.Count() > 0) {
+    <table class="table table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th>
+                    <div style="width:50%;float:left;text-align:left">
+                        @Html.DisplayNameFor(model=>model.Name)
+                    </div>
+                
+                    <div style="width:50%;float:right;text-align:right">
+                        <a asp-controller="Products"
+                       asp-action="Index"
+                       asp-route-sortType="Name"
+                       asp-route-sortOrder="asc"
+                       asp-route-search="@ViewBag.CurrentSearch"
+                       asp-route-pageSize="@ViewBag.PageSize"
+                       asp-route-pageNumber="@ViewBag.PageNumber"
+                       style="text-decoration:none">
+                            <i class="bi bi-arrow-up"></i>
+                        </a>
+                        <a asp-controller="Products"
+                       asp-action="Index"
+                       asp-route-sortType="Name"
+                       asp-route-sortOrder="desc"
+                       asp-route-search="@ViewBag.CurrentSearch"
+                       asp-route-pageSize="@ViewBag.PageSize"
+                       asp-route-pageNumber="@ViewBag.PageNumber"
+                       style="text-decoration:none">
+                            <i class="bi bi-arrow-down"></i>
+                        </a>
+                    </div>
+                </th>
+                <th>
+                    <div style="width:50%;float:left;text-align:left">
+                        @Html.DisplayNameFor(model=>model.Category)
+                    </div>
+
+                    <div style="width:50%;float:right;text-align:right">
+                        <a asp-controller="Products"
+                       asp-action="Index"
+                       asp-route-sortType="Category"
+                       asp-route-sortOrder="asc"
+                       asp-route-search="@ViewBag.CurrentSearch"
+                       asp-route-pageSize="@ViewBag.PageSize"
+                       asp-route-pageNumber="@ViewBag.PageNumber"
+                       style="text-decoration:none">
+                            <i class="bi bi-arrow-up"></i>
+                        </a>
+                        <a asp-controller="Products"
+                       asp-action="Index"
+                       asp-route-sortType="Category"
+                       asp-route-sortOrder="desc"
+                       asp-route-search="@ViewBag.CurrentSearch"
+                       asp-route-pageSize="@ViewBag.PageSize"
+                       asp-route-pageNumber="@ViewBag.PageNumber"
+                       style="text-decoration:none">
+                            <i class="bi bi-arrow-down"></i>
+                        </a>
+                    </div>
+                </th>
+                
+            
+                <th>
+                    <div style="width:50%;float:left;text-align:left">
+                        @Html.DisplayNameFor(model=>model.ExpiryDate)
+                    </div>
+
+                    <div style="width:50%;float:right;text-align:right">
+                        <a asp-controller="Products"
+                       asp-action="Index"
+                       asp-route-sortType="ExpiryDate"
+                       asp-route-sortOrder="asc"
+                       asp-route-search="@ViewBag.CurrentSearch"
+                       asp-route-pageSize="@ViewBag.PageSize"
+                       asp-route-pageNumber="@ViewBag.PageNumber"
+                       style="text-decoration:none">
+                            <i class="bi bi-arrow-up"></i>
+                        </a>
+                        <a asp-controller="Products"
+                       asp-action="Index"
+                       asp-route-sortType="ExpiryDate"
+                       asp-route-sortOrder="desc"
+                       asp-route-search="@ViewBag.CurrentSearch"
+                       asp-route-pageSize="@ViewBag.PageSize"
+                       asp-route-pageNumber="@ViewBag.PageNumber"
+                       style="text-decoration:none">
+                            <i class="bi bi-arrow-down"></i>
+                        </a>
+                    </div>
+                </th>
+           
+                   
+                <th>
+                    <div style="width:50%;float:left;text-align:left">
+                        @Html.DisplayNameFor(model=>model.Price)
+                    </div>
+
+                    <div style="width:50%;float:right;text-align:right">
+                        <a asp-controller="Products"
+                       asp-action="Index"
+                       asp-route-sortType="Price"
+                       asp-route-sortOrder="asc"
+                       asp-route-search="@ViewBag.CurrentSearch"
+                       asp-route-pageSize="@ViewBag.PageSize"
+                       asp-route-pageNumber="@ViewBag.PageNumber"
+                       style="text-decoration:none">
+                            <i class="bi bi-arrow-up"></i>
+                        </a>
+                        <a asp-controller="Products"
+                       asp-action="Index"
+                       asp-route-sortType="Price"
+                       asp-route-sortOrder="desc"
+                       asp-route-search="@ViewBag.CurrentSearch"
+                       asp-route-pageSize="@ViewBag.PageSize"
+                       asp-route-pageNumber="@ViewBag.PageNumber"
+                       style="text-decoration:none">
+                            <i class="bi bi-arrow-down"></i>
+                        </a>
+                    </div>
+                </th>
+                
+                <th>
+                    @Html.DisplayNameFor(model => model.ImageUrl)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.Name)
+                </td>
+            
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExpiryDate)
+                </td>
+           
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                    <td>
+                        <img src="@Html.DisplayFor(modelItem => item.ImageUrl)" id="prImage" class="col-4 align-middle"
+                        style="object-fit:contain" />
+                    </td>
+
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-success">
+                        Edit <i class="bi bi-pencil-square"></i>
+                    </a>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn = btn-primary">
+                        Details <i class="bi bi-info-square-fill"></i>
+                    </a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">
+                        Delete <i class="bi bi-trash-fill"></i>
+                    </a>
+                </td>
+            </tr>
+    }
+        </tbody>
+    </table>
+}
+
+
+
+else
+{
+    <h1 class=" alert alert-danger text-center ">
+        There is no data.
+    </h1>
+}
+
+<br />
+    <a class="btn btn-primary" asp-controller="Home"
+       asp-action="Index">
+        back to home
+    </a>
+<br />
+

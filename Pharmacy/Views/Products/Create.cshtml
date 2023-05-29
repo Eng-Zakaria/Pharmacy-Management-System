@@ -1,0 +1,105 @@
+﻿@model Pharmacy.Models.Product
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Product</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" asp-action="Create"
+              enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input type="text" asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            @*<div>
+            <label asp-for="CategoryId"></label>
+                <select class="form-control" asp-for="CategoryId"
+                 asp-items="@(new SelectList(ViewBag.AllCategories,"Id","Name"))">
+                <option disabled selected>Select...</option>
+            </select>
+                <span asp-validation-for="CategoryId"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="CategoryId" class="control-label"></label>
+                <select asp-for="CategoryId" class ="form-control" asp-items="ViewBag.CategoryId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductNoItems" class="control-label"></label>
+                <input type="number" asp-for="ProductNoItems" class="form-control" />
+                <span asp-validation-for="ProductNoItems" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="ActiveSubstance" class="control-label"></label>
+                <input type="text" asp-for="ActiveSubstance" class="form-control" />
+                <span asp-validation-for="ActiveSubstance" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Dose" class="control-label"></label>
+                <input type="text" asp-for="Dose" class="form-control" />
+                <span asp-validation-for="Dose" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CompanyName" class="control-label"></label>
+                <input type="text" asp-for="CompanyName" class="form-control" />
+                <span asp-validation-for="CompanyName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExpiryDate" class="control-label"></label>
+                <input type="date" asp-for="ExpiryDate" class="form-control" />
+                <span asp-validation-for="ExpiryDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input type="text" asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input type="number" asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageUrl" class="control-label"></label>
+                <input type="file" name="imageFile"
+                       id="imageFile" accept=".png,.jpg"
+                       onchange="AddImage()" class="form-control" />
+                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+            </div>
+            <hr />
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+
+    </div>
+
+    <img src="" id="prImage" class="col-4"
+         style="object-fit:contain"/>
+
+</div>
+
+<div>
+    <a class="btn btn-primary" asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+
+        function AddImage() {
+            document.getElementById("prImage").
+                src = window.URL.createObjectURL
+                    (document.getElementById("imageFile").files[0]);
+
+        }
+
+    </script>
+}
